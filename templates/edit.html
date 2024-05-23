@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %} Edit User {% endblock %}
+
+{% block content %}
+
+<h1> Edit: {{user.first_name}} {{user.last_name}} </h1>
+    <form method="POST">
+        <input type="text" name="first" placeholder="First Name" required>
+        <input type="text" name="last" placeholder="Last Name" required>
+        <input type="text" name="image" placeholder="Image URL">
+        <button>Submit User</button>
+    </form>
+
+{% endblock %}
