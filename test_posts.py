@@ -23,8 +23,8 @@ class PostViewsTestCase(TestCase):
     def setUp(self):
         """add a sample user and post"""
 
-        User.query.delete()
-        Post.query.delete()
+        # User.query.delete()
+        # Post.query.delete()
 
         user = User(first_name="Test", last_name="Case")
         db.session.add(user)
@@ -62,7 +62,7 @@ class PostViewsTestCase(TestCase):
 
     def test_delete_post(self):
         with app.test_client() as client:
-            resp = client.post(f"/posts/{self.user_id}/delete", follow_redirects=True)
+            resp = client.post(f"/posts/{self.post_id}/delete", follow_redirects=True)
             html = resp.get_data(as_text=True)
 
             self.assertEqual(resp.status_code, 200)

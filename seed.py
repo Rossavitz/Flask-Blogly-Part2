@@ -1,4 +1,4 @@
-from models import User, db, Post
+from models import User, db, Post, Tag, PostTag
 from app import app
 
 db.drop_all()
@@ -6,6 +6,8 @@ db.create_all()
 
 User.query.delete()
 Post.query.delete()
+Tag.query.delete()
+PostTag.query.delete()
 
 ross = User(
     first_name="Ross",
@@ -47,4 +49,39 @@ post3 = Post(
 db.session.add(post1)
 db.session.add(post2)
 db.session.add(post3)
+db.session.commit()
+
+tag1 = Tag(name="Funny")
+tag2 = Tag(name="Great")
+tag3 = Tag(name="True")
+tag4 = Tag(name="Amazing")
+
+db.session.add_all([tag1, tag2, tag3, tag4])
+db.session.commit()
+
+
+p1t2 = PostTag(
+    post_id=1,
+    tag_id=2,
+)
+
+p2t3 = PostTag(
+    post_id=2,
+    tag_id=3,
+)
+
+p2t4 = PostTag(
+    post_id=2,
+    tag_id=4,
+)
+
+p3t1 = PostTag(
+    post_id=3,
+    tag_id=1,
+)
+
+db.session.add(p1t2)
+db.session.add(p2t3)
+db.session.add(p2t4)
+db.session.add(p3t1)
 db.session.commit()

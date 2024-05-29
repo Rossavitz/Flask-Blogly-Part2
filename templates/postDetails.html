@@ -10,6 +10,16 @@
 
 <p>Posted by: {{ post.user.first_name }} {{ post.user.last_name }}</p>
 <p>{{ post.created_at }}</p>
+
+{% if post.tags %}
+<p>
+  <b>Tags:</b>
+  {% for tag in post.tags %}
+  <a href="/tags/{{ tag.id }}"><i>{{ tag.name }}</i></a>
+  {% endfor %}
+</p>
+{% endif %}
+
 <form>
     <button formaction="/users/{{post.user_id}}">Cancel</button>
     <button formaction="/posts/{{post.id}}/edit" formmethod="GET">Edit</button>
